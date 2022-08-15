@@ -32,7 +32,7 @@ def static_dir(path):
 
 
 # api
-db = "database.db"
+db = "database2.db"
 @app.route("/api/login/",methods=["POST"])
 def api():
     json = request.json
@@ -105,7 +105,7 @@ def api_sigup():
     if validate_user(json):
         with sqlite3.connect(db) as conn:
             command = "INSERT INTO STUDENT ( NAME,FATHER,MOTHER,EMAIL,PHONE,DOB,PRIFILE_PHOTO,ROLLNO,ADDRESS,PASSWORD ) VALUES(?,?,?,?,?,?,?,?,?,?)"
-            conn.execute(command,(json["name"],json["father_name"],json["mother_name"],json["email"],json["phone"],json["dob"],json["file"],session["number"],json["address"],json["password"]))
+            conn.execute(command,(json["name"].title(),json["father_name"].title(),json["mother_name"].title(),json["email"],json["phone"],json["dob"],json["file"],session["number"],json["address"],json["password"]))
             conn.commit()
             session["number"] = None
             return "",200
@@ -159,7 +159,7 @@ def send_email():
     address = request.args.get("address")
     amount = request.args.get("amount")
     nofication =f"""<h1>Mesh Bill</h1>
-    <p>dear student your mesh bill is {amount}<p>
+    <p>Dear student, your mess bill for this mounth is ₹{amount}.Please pay before the due date.<p>
     <pre>
     Best regards
     supriya adhikari
