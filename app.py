@@ -6,8 +6,8 @@ import sys,sqlite3
 app = Flask(__name__)
 
 # setting up email
-app.config["MAIL_DEFAULT_SENDER"] = "enter email here"
-app.config["MAIL_PASSWORD"] = "enter password here"
+app.config["MAIL_DEFAULT_SENDER"] = "hostalmanagement@hotmail.com"
+app.config["MAIL_PASSWORD"] = "hostal@123"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_SERVER"] = "smtp-mail.outlook.com"
 app.config["MAIL_USE_TLS"] = True
@@ -32,7 +32,7 @@ def static_dir(path):
 
 
 # api
-db = "db.sqlite3"
+db = "database2.db"
 @app.route("/api/login/",methods=["POST"])
 def api():
     json = request.json
